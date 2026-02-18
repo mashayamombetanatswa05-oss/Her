@@ -3,26 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Updated Index</title>
+    <title>Hair Haven</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Page</h1>
-    </header>
-    <section>
-        <img src="https://example.com/image1.jpg" alt="Diverse group of people" />
-        <img src="https://example.com/image2.jpg" alt="Community event featuring Black individuals" />
-        <p>This page showcases various initiatives and events.</p>
-    </section>
+
+<header>
     <nav>
         <ul>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/events.html">Upcoming Events</a></li>
-            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <footer>
-        <p>&copy; 2026 Our Organization. All rights reserved.</p>
-    </footer>
+</header>
+
+<section id="hero" style="background-image: url('https://images.unsplash.com/photo-1499516574209-3bb4c8e5706a');">
+    <h1>Welcome to Hair Haven</h1>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>Founded by Mai Tanatswa, Hair Haven is dedicated to providing the best hair care.</p>
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="service-card">
+        <h3>Hair Styling & Cutting</h3>
+        <p>Description of Hair Styling & Cutting services.</p>
+    </div>
+    <div class="service-card">
+        <h3>Hair Coloring & Highlights</h3>
+        <p>Description of Hair Coloring & Highlights services.</p>
+    </div>
+    <div class="service-card">
+        <h3>Braiding & Protective Styles</h3>
+        <p>Description of Braiding & Protective Styles services.</p>
+    </div>
+</section>
+
+<section id="training">
+    <h2>Training Courses</h2>
+    <p>Highlights of courses offered at Hair Haven.</p>
+</section>
+
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551531878-4565c1cd1f5b" alt="Gallery Item 1"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551531783-042ed1b7ac9f" alt="Gallery Item 2"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534516118744-409b57199dab" alt="Gallery Item 3"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1573827179703-a984bbd1645a" alt="Gallery Item 4"></div>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form action="#" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <input type="submit" value="Schedule Appointment">
+    </form>
+</section>
+
+<footer>
+    <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter</a></li>
+    </ul>
+</footer>
+
 </body>
 </html>
