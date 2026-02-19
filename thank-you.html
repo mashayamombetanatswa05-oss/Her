@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Hair Haven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: linear-gradient(135deg, #faf6f1 0%, #f0e8dd 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .thank-you-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .icon {
+            font-size: 5rem;
+            color: #c49a6c;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: #a0785a;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #c49a6c;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #a0785a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(196,154,108,0.3);
+        }
+        
+        .info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 1rem;
+            color: #777;
+        }
+        
+        .info i {
+            color: #c49a6c;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-card">
+        <div class="icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Thank You!</h1>
+        <p>Your message has been sent successfully. We'll get back to you within 24 hours at the email address you provided.</p>
+        <a href="/" class="btn">Back to Home</a>
+        <div class="info">
+            <p><i class="fas fa-envelope"></i> hairhavean@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +263 77 123 4567</p>
+        </div>
+    </div>
+</body>
+</html>
