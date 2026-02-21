@@ -1,1798 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair Haven | Luxury Salon & Academy • Kwekwe</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Elegant pairing -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Swiper Slider CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <style>
-        /* ========== RESET & VARIABLES ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold: #d4af37;
-            --champagne: #f7e7d4;
-            --sand: #e5d0b0;
-            --taupe: #a58e7c;
-            --espresso: #5c3e35;
-            --cream: #fcf9f2;
-            --charcoal: #2c2c2c;
-            --shadow-sm: 0 5px 20px rgba(0,0,0,0.03);
-            --shadow-md: 0 15px 40px rgba(92,62,53,0.08);
-            --shadow-lg: 0 30px 60px rgba(92,62,53,0.12);
-            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--charcoal);
-            background-color: var(--cream);
-            overflow-x: hidden;
-            font-weight: 300;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Marcellus', serif;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: var(--taupe);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--espresso);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 25px;
-        }
-
-        .section-title h2::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), var(--taupe), var(--gold), transparent);
-        }
-
-        .section-title h2::after {
-            content: '✦';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
-            color: var(--gold);
-            background: var(--cream);
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: transparent;
-            color: var(--espresso);
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 2px;
-            border: 1px solid var(--gold);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            z-index: 1;
-            text-transform: uppercase;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--espresso);
-            transition: left 0.4s;
-            z-index: -1;
-        }
-
-        .btn:hover {
-            color: var(--gold);
-            border-color: var(--espresso);
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: var(--espresso);
-            border: none;
-        }
-
-        .btn-gold::before {
-            background: var(--espresso);
-        }
-
-        .btn-gold:hover {
-            color: var(--gold);
-        }
-
-        /* ========== PRELOADER ========== */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--cream);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s;
-        }
-
-        .preloader.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader {
-            width: 80px;
-            height: 80px;
-            position: relative;
-        }
-
-        .loader::before,
-        .loader::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid transparent;
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 1.2s linear infinite;
-        }
-
-        .loader::after {
-            border-top-color: var(--espresso);
-            animation-delay: 0.3s;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ========== HEADER ========== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            padding: 30px 0;
-        }
-
-        header.scrolled {
-            background: rgba(252, 249, 242, 0.98);
-            backdrop-filter: blur(15px);
-            box-shadow: var(--shadow-md);
-            padding: 15px 0;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--espresso);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 24px;
-            transition: var(--transition);
-        }
-
-        .logo:hover .logo-icon {
-            transform: rotate(90deg);
-            background: var(--gold);
-            color: var(--espresso);
-        }
-
-        .logo h1 {
-            font-size: 28px;
-            color: var(--espresso);
-            line-height: 1;
-        }
-
-        .logo span {
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--espresso);
-            font-weight: 400;
-            font-size: 14px;
-            letter-spacing: 2px;
-            transition: color 0.3s;
-            position: relative;
-            text-transform: uppercase;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            color: var(--espresso);
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        @media (max-width: 1024px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 350px;
-                height: 100vh;
-                background: var(--cream);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 50px;
-                transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-                box-shadow: -20px 0 50px rgba(92,62,53,0.1);
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 18px;
-            }
-
-            .overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(92,62,53,0.4);
-                backdrop-filter: blur(5px);
-                z-index: 998;
-                opacity: 0;
-                visibility: hidden;
-                transition: 0.4s;
-            }
-
-            .overlay.active {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-
-        /* ========== HERO SLIDER ========== */
-        .hero {
-            height: 100vh;
-            min-height: 800px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .swiper {
-            width: 100%;
-            height: 100%;
-        }
-
-        .swiper-slide {
-            position: relative;
-        }
-
-        .slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .slide-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(92,62,53,0.3) 0%, rgba(0,0,0,0.2) 100%);
-        }
-
-        .slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 20px;
-            z-index: 2;
-        }
-
-        .slide-content h2 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 400;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 30px rgba(0,0,0,0.2);
-            animation: fadeUp 1s ease;
-        }
-
-        .slide-content p {
-            font-size: clamp(1rem, 2vw, 1.4rem);
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: fadeUp 1s 0.2s both;
-        }
-
-        .slide-content .btn {
-            animation: fadeUp 1s 0.4s both;
-            background: transparent;
-            color: white;
-            border-color: white;
-        }
-
-        .slide-content .btn:hover {
-            background: var(--espresso);
-            color: var(--gold);
-            border-color: var(--espresso);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
-            background: transparent;
-            border: 2px solid white;
-            opacity: 1;
-        }
-
-        .swiper-pagination-bullet-active {
-            background: var(--gold);
-            border-color: var(--gold);
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: white;
-            background: rgba(255,255,255,0.1);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background: var(--gold);
-            color: var(--espresso);
-        }
-
-        .swiper-button-next::after,
-        .swiper-button-prev::after {
-            font-size: 24px;
-        }
-
-        /* ========== ABOUT ========== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 1.2s;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            right: 30px;
-            bottom: 30px;
-            border: 2px solid rgba(255,255,255,0.3);
-            z-index: 1;
-            pointer-events: none;
-            transition: 0.5s;
-        }
-
-        .about-image:hover::before {
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-        }
-
-        .about-text h3 {
-            font-size: 2.8rem;
-            color: var(--espresso);
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-
-        .about-text p {
-            margin-bottom: 30px;
-            color: #666;
-            line-height: 2;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        .signature {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-top: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .signature::before {
-            content: '—';
-            color: var(--taupe);
-            font-size: 2rem;
-            margin-right: 15px;
-        }
-
-        /* ========== SERVICES ========== */
-        .services-section {
-            background: linear-gradient(135deg, #fff 0%, var(--champagne) 100%);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-20px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-image {
-            height: 280px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s;
-        }
-
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-
-        .service-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, rgba(92,62,53,0.8), transparent);
-        }
-
-        .service-tag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--gold);
-            color: var(--espresso);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(212,175,55,0.3);
-        }
-
-        .service-content {
-            padding: 35px;
-            text-align: center;
-            background: white;
-        }
-
-        .service-content h3 {
-            font-size: 2rem;
-            color: var(--espresso);
-            margin-bottom: 15px;
-        }
-
-        .service-content p {
-            color: #777;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .service-price {
-            font-size: 2.2rem;
-            color: var(--espresso);
-            margin: 20px 0;
-            font-family: 'Marcellus', serif;
-        }
-
-        .service-price small {
-            font-size: 1rem;
-            color: var(--taupe);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* ========== TRAINING ========== */
-        .training-section {
-            background: url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80') fixed;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;
-        }
-
-        .training-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(92,62,53,0.9) 0%, rgba(92,62,53,0.7) 100%);
-        }
-
-        .training-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .training-content h2 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            color: var(--gold);
-        }
-
-        .training-content p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            line-height: 2;
-        }
-
-        .training-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255,255,255,0.1);
-            padding: 15px 30px;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-        }
-
-        .feature i {
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
-
-        /* ========== GALLERY MASONRY ========== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            height: 300px;
-        }
-
-        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; height: 620px; }
-        .gallery-item:nth-child(4) { grid-column: span 2; }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(212,175,55,0.9) 0%, rgba(92,62,53,0.9) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.5s;
-            color: white;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .gallery-overlay span {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 992px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .gallery-item:nth-child(1) {
-                grid-column: span 2;
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-item:nth-child(1) {
-                grid-column: auto;
-                height: 300px;
-            }
-        }
-
-        /* ========== TESTIMONIALS ========== */
-        .testimonials-section {
-            background: var(--cream);
-        }
-
-        .testimonial-swiper {
-            padding: 40px 0 80px;
-        }
-
-        .testimonial-card {
-            background: white;
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            margin: 20px;
-            transition: 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .testimonial-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 30px;
-            border: 4px solid var(--gold);
-        }
-
-        .testimonial-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .testimonial-name {
-            font-size: 1.4rem;
-            color: var(--espresso);
-            margin-bottom: 5px;
-            font-family: 'Marcellus', serif;
-        }
-
-        .testimonial-role {
-            color: var(--taupe);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .stars {
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        /* ========== CONTACT ========== */
-        .contact-section {
-            background: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-        }
-
-        .contact-info {
-            background: linear-gradient(135deg, var(--espresso) 0%, #7a5544 100%);
-            padding: 60px;
-            border-radius: 40px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-info::before {
-            content: '✦';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            font-size: 300px;
-            opacity: 0.1;
-            transform: rotate(15deg);
-        }
-
-        .contact-info h3 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--gold);
-            position: relative;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 25px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .info-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--gold);
-            transition: var(--transition);
-        }
-
-        .info-item:hover .info-icon {
-            background: var(--gold);
-            color: var(--espresso);
-            transform: rotate(360deg);
-        }
-
-        .info-text h4 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .info-text p {
-            color: rgba(255,255,255,0.8);
-            line-height: 1.7;
-        }
-
-        .map {
-            margin-top: 40px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .contact-form {
-            padding: 60px;
-            background: var(--cream);
-            border-radius: 40px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .contact-form h3 {
-            font-size: 2.5rem;
-            color: var(--espresso);
-            margin-bottom: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 18px 25px;
-            border: 1px solid #e0d5cc;
-            border-radius: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            transition: var(--transition);
-            background: white;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(212,175,55,0.1);
-        }
-
-        select.form-control {
-            cursor: pointer;
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .hidden-field {
-            display: none;
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: var(--charcoal);
-            color: #a0a0a0;
-            padding: 80px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr;
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 1px;
-            background: var(--gold);
-        }
-
-        .footer-col p {
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 15px;
-        }
-
-        .footer-col a {
-            color: #a0a0a0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-col a:hover {
-            color: var(--gold);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 45px;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--espresso);
-            transform: translateY(-5px);
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.05);
-            color: white;
-        }
-
-        .newsletter-form input::placeholder {
-            color: #777;
-        }
-
-        .newsletter-form button {
-            padding: 15px 25px;
-            background: var(--gold);
-            border: none;
-            border-radius: 10px;
-            color: var(--espresso);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: #c49a2f;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* ========== BACK TO TOP ========== */
-        .back-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background: var(--gold);
-            color: var(--espresso);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 99;
-            border: none;
-            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--espresso);
-            color: var(--gold);
-            transform: translateY(-5px);
-        }
-
-        /* ========== THANK YOU PAGE ========== */
-        .thank-you-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--champagne) 100%);
-            padding: 20px;
-        }
-
-        .thank-you-card {
-            background: white;
-            padding: 80px 60px;
-            border-radius: 60px;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-            max-width: 700px;
-            animation: scaleIn 0.8s ease;
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .thank-you-icon {
-            width: 120px;
-            height: 120px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 40px;
-            font-size: 3.5rem;
-            color: var(--espresso);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .thank-you-card h1 {
-            font-size: 3.5rem;
-            color: var(--espresso);
-            margin-bottom: 20px;
-        }
-
-        .thank-you-card p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .thank-you-info {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid #eee;
-        }
-
-        .thank-you-info p {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .thank-you-info i {
-            color: var(--gold);
-            margin-right: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .thank-you-card {
-                padding: 40px 30px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>god mod of hacking · driptech</title>
+  <style>
+    /* reset & base — pure system tone */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0b0d10;
+      background-image: 
+        linear-gradient(rgba(0, 255, 196, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 196, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      font-family: 'Courier New', Courier, 'Fira Code', monospace;
+      color: #c7d1d9;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    /* soft scanline flicker — analog soul */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(150,255,210,0.02) 2px, transparent 3px, transparent 5px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* main container — terminal window */
+    .console {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(10, 14, 19, 0.85);
+      backdrop-filter: blur(2px);
+      border: 1px solid #2a3a44;
+      box-shadow: 0 0 30px rgba(0, 255, 200, 0.15), 0 0 5px #00ffc350 inset;
+      padding: 2.2rem 2.5rem;
+      border-radius: 12px;
+      position: relative;
+      z-index: 10;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .console:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 200, 0.3), 0 0 8px #6effe0 inset;
+    }
+
+    /* header — god mod declaration */
+    .glitch-wrapper {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid #2c4a4a;
+      padding-bottom: 1.2rem;
+    }
+
+    .glitch {
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #dbfff0;
+      text-shadow: 
+        0.05em 0 0 rgba(255,0,100,0.5),
+        -0.05em -0.025em 0 rgba(0,255,255,0.6);
+      animation: glitch-shake 0.3s infinite alternate;
+      word-break: break-word;
+    }
+
+    @keyframes glitch-shake {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, 0); }
+      80% { transform: translate(1px, -0.5px); }
+      100% { transform: translate(0); }
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      color: #8ecdc0;
+      margin-top: 0.4rem;
+      text-transform: lowercase;
+      font-weight: 300;
+    }
+
+    .subhead::before {
+      content: "⨯ ";
+      color: #3affb6;
+    }
+    .subhead::after {
+      content: " ⨯";
+      color: #3affb6;
+    }
+
+    /* main thesis — like a manifesto */
+    .thesis {
+      background: rgba(0, 20, 20, 0.4);
+      padding: 1.5rem 1.8rem;
+      border-left: 4px solid #2affb6;
+      margin-bottom: 2rem;
+      border-radius: 0 12px 12px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .thesis p {
+      margin-bottom: 1rem;
+    }
+
+    .thesis p:last-child {
+      margin-bottom: 0;
+    }
+
+    .thesis strong {
+      color: #9affdc;
+      font-weight: normal;
+      text-shadow: 0 0 5px #00e6ff;
+    }
+
+    /* definition block — cmd style */
+    .cmd-block {
+      background: #0a1218;
+      border: 1px solid #1e4045;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      border-radius: 20px;
+      font-family: inherit;
+      box-shadow: inset 0 0 12px #000d0e, 0 5px 10px #00000050;
+    }
+
+    .cmd-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      color: #b2ffe2;
+      font-size: 1.2rem;
+      border-bottom: 1px dashed #2f665f;
+      padding-bottom: 0.5rem;
+    }
+
+    .prompt {
+      color: #25f0b2;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .cmd-text {
+      color: #f0ffe6;
+      word-break: break-word;
+    }
+
+    .def-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .def-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      border-left: 2px solid #379e8b;
+      padding-left: 1.2rem;
+    }
+
+    .def-marker {
+      color: #6affcf;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .def-marker::before {
+      content: "⌲";
+    }
+
+    /* pillars */
+    .pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 2.5rem 0 1rem;
+      justify-content: center;
+    }
+
+    .pillar {
+      background: rgba(30, 50, 50, 0.5);
+      border: 1px solid #298072;
+      padding: 1rem 1.6rem;
+      flex: 1 1 150px;
+      text-align: center;
+      border-radius: 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 12px #00ffe050;
+      transition: 0.2s;
+      color: #d5ffec;
+    }
+
+    .pillar:hover {
+      background: #1b4e48;
+      border-color: #bcffeb;
+      box-shadow: 0 0 20px #6effd5;
+      transform: scale(1.02);
+    }
+
+    /* quote / wisdom */
+    .wisdom {
+      font-style: italic;
+      margin: 2.2rem 0 1.8rem;
+      padding: 1rem 1.8rem;
+      background: #0b1a1e40;
+      border-radius: 40px 8px 40px 8px;
+      border: 1px solid #5effc690;
+      color: #b7ffe7;
+      position: relative;
+      font-size: 1.1rem;
+    }
+
+    .wisdom::before {
+      content: "“";
+      font-size: 3rem;
+      position: absolute;
+      left: -0.2rem;
+      top: -0.8rem;
+      color: #1effbc;
+      opacity: 0.5;
+      font-family: serif;
+    }
+    .wisdom::after {
+      content: "”";
+      font-size: 3rem;
+      position: absolute;
+      right: 0.2rem;
+      bottom: -1.2rem;
+      color: #1effbc;
+      opacity: 0.5;
+      font-family: serif;
+    }
+
+    /* signature */
+    .signature {
+      margin-top: 3rem;
+      text-align: right;
+      font-size: 1.2rem;
+      border-top: 1px solid #34665c;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #7bcbbe;
+    }
+
+    .sig-name {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      color: #d0ffec;
+      text-shadow: 0 0 8px cyan;
+      filter: drop-shadow(0 0 4px #2affa0);
+    }
+
+    .sig-name::before {
+      content: "> ";
+      color: #0f0;
+    }
+
+    .footnote {
+      font-size: 0.9rem;
+      color: #47665e;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .console {
+        padding: 1.5rem;
+      }
+      .glitch {
+        font-size: 2.2rem;
+        letter-spacing: 3px;
+      }
+      .pillars {
+        flex-direction: column;
+      }
+      .signature {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+    }
+
+    /* blinking cursor detail */
+    .cursor {
+      background: #aaffdd;
+      display: inline-block;
+      width: 10px;
+      height: 1.3rem;
+      vertical-align: middle;
+      margin-left: 6px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* hidden ascii — just for texture */
+    .hidden-ascii {
+      opacity: 0.15;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-top: 2rem;
+      color: #55bba0;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="loader"></div>
+  <div class="console">
+    <div class="glitch-wrapper">
+      <h1 class="glitch">GOD MOD OF HACKING</h1>
+      <div class="subhead">the true form · beyond borders</div>
     </div>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-cut"></i>
-                </div>
-                <h1>Hair <span>Haven</span></h1>
-            </div>
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#training">Training</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#testimonials">Stories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- main thesis: hacking as pure understanding -->
+    <div class="thesis">
+      <p><strong>Hacking</strong> is not a crime, nor a cheat — it is the <strong>innate pulse</strong> of curiosity that decodes reality. The "god mod" appears when you realize every system (digital, biological, social) is a construct of rules, and you learn to see the gaps, the elegance, the unwritten.</p>
+      <p>This is the true form: the ability to <strong>remix existence</strong> with deep comprehension, not for destruction, but for the raw beauty of creation and liberation. No dark rooms, no stolen data — only the quiet mastery of <strong>how things truly work</strong>.</p>
+    </div>
+
+    <!-- definition block : command line style -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="prompt">$></span>
+        <span class="cmd-text">cat /godmode/manifest</span>
+      </div>
+      <div class="def-grid">
+        <div class="def-item">
+          <span class="def-marker"></span>
+          <span><strong>hacking (n.)</strong> — playful exploration of limits, the art of making systems do what they were never intended to do, yet should have.</span>
         </div>
-        <div class="overlay" id="overlay"></div>
-    </header>
-
-    <!-- Hero Slider -->
-    <section class="hero" id="home">
-        <div class="swiper heroSwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80');"></div>
-                    <div class="slide-content">
-                        <h2 data-swiper-parallax="-300">Experience Luxury</h2>
-                        <p data-swiper-parallax="-200">Where every strand tells a story</p>
-                        <a href="#contact" class="btn" data-swiper-parallax="-100">Book Your Visit</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1522338140262-f46f5913618a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2084&q=80');"></div>
-                    <div class="slide-content">
-                        <h2 data-swiper-parallax="-300">Master the Craft</h2>
-                        <p data-swiper-parallax="-200">Professional training academy</p>
-                        <a href="#training" class="btn" data-swiper-parallax="-100">Start Your Journey</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2081&q=80');"></div>
-                    <div class="slide-content">
-                        <h2 data-swiper-parallax="-300">Timeless Elegance</h2>
-                        <p data-swiper-parallax="-200">Where beauty meets artistry</p>
-                        <a href="#gallery" class="btn" data-swiper-parallax="-100">View Our Work</a>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+        <div class="def-item">
+          <span class="def-marker"></span>
+          <span><strong>god mod (n.)</strong> — state of total fluency: you don't break the rules, you transcend them. you see the source code of experience.</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <div class="subtitle">Welcome to</div>
-                <h2>Hair Haven</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-image" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" alt="Hair Haven Salon">
-                </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h3>A Sanctuary of Beauty in Mbizo 19</h3>
-                    <p>For over 8 years, Hair Haven has been the premier destination for discerning clients in Kwekwe. Founded by Mai Tanatswa, our salon combines timeless techniques with contemporary artistry to create looks that celebrate your individuality.</p>
-                    <p>Beyond our salon services, we're passionate about nurturing the next generation of hairstylists. Our academy offers comprehensive training programs that transform passion into profession, equipping students with both technical excellence and business acumen.</p>
-                    <div class="signature">Mai Tanatswa</div>
-                </div>
-            </div>
+        <div class="def-item">
+          <span class="def-marker"></span>
+          <span><strong>true hacker (n.)</strong> — someone who builds with understanding, who sees a locked door as a conversation, not an obstacle.</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Services Section -->
-    <section class="section services-section" id="services">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <div class="subtitle">Our Expertise</div>
-                <h2>Signature Services</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2081&q=80" alt="Hair Styling">
-                        <div class="service-tag">✦</div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Precision Cutting</h3>
-                        <p>Customized cuts that frame your features perfectly. Our stylists study your hair texture and lifestyle to create looks that are both beautiful and maintainable.</p>
-                        <div class="service-price">$10 <small>starting at</small></div>
-                        <a href="#contact" class="btn btn-outline">Inquire</a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Hair Coloring">
-                        <div class="service-tag">✦</div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Color Artistry</h3>
-                        <p>From subtle highlights to bold transformations, we use premium products that nourish while they color. Our balayage and ombre techniques are among the best in Kwekwe.</p>
-                        <div class="service-price">$25 <small>starting at</small></div>
-                        <a href="#contact" class="btn btn-outline">Inquire</a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80" alt="Braiding">
-                        <div class="service-tag">✦</div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Protective Styling</h3>
-                        <p>Our braiding specialists create intricate, long-lasting styles that protect your natural hair. Choose from box braids, cornrows, twists, and more.</p>
-                        <div class="service-price">$30 <small>starting at</small></div>
-                        <a href="#contact" class="btn btn-outline">Inquire</a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2088&q=80" alt="Hair Treatment">
-                        <div class="service-tag">✦</div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Luxury Treatments</h3>
-                        <p>Rejuvenate your hair with our deep conditioning rituals and scalp therapies. Using natural oils and professional-grade products, we restore vitality to every strand.</p>
-                        <div class="service-price">$15 <small>starting at</small></div>
-                        <a href="#contact" class="btn btn-outline">Inquire</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- pillars of the true form -->
+    <div style="margin: 1.5rem 0 0.5rem; text-align: center; color: #6fcbbe;">⌘ pillars of the true form ⌘</div>
+    <div class="pillars">
+      <div class="pillar">#curiosity</div>
+      <div class="pillar">#systems_thinking</div>
+      <div class="pillar">#creative_recombination</div>
+      <div class="pillar">#elegant_breach</div>
+    </div>
 
-    <!-- Training Section -->
-    <section class="section training-section" id="training">
-        <div class="container">
-            <div class="training-content" data-aos="fade-up">
-                <h2>Master the Art of Hairdressing</h2>
-                <p>Join our comprehensive training program and transform your passion into a thriving career. Under the mentorship of Mai Tanatswa, you'll learn everything from foundational techniques to advanced styling, plus the business skills to launch your own salon.</p>
-                <div class="training-features">
-                    <div class="feature"><i class="fas fa-check-circle"></i> 3-Month Intensive</div>
-                    <div class="feature"><i class="fas fa-check-circle"></i> Hands-On Practice</div>
-                    <div class="feature"><i class="fas fa-check-circle"></i> Business Training</div>
-                    <div class="feature"><i class="fas fa-check-circle"></i> Certification</div>
-                </div>
-                <a href="#contact" class="btn btn-gold">Enroll Now</a>
-            </div>
-        </div>
-    </section>
+    <!-- wisdom block: philosophical quote -->
+    <div class="wisdom">
+      The highest form of hacking is invisible. It doesn't deface — it reshapes the possible. It doesn't steal — it unveils what was always there, waiting to be seen. To enter god mod is to stop fighting the machine and start dancing with its logic.
+    </div>
 
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <div class="subtitle">Our Portfolio</div>
-                <h2>Masterpieces</h2>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Gallery 1">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Modern Precision</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2084&q=80" alt="Gallery 2">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Color Magic</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Gallery 3">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Braiding Art</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1560851248-7a2a48efb433?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" alt="Gallery 4">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Training Session</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?ixlib=rb-4.0.3&auto=format&fit=crop&w=2081&q=80" alt="Gallery 5">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Elegant Updos</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
-                    <img src="https://images.unsplash.com/photo-1522337094846-8a818192de1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2088&q=80" alt="Gallery 6">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>Bridal Beauty</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- explanation of "god mod" deeper -->
+    <div style="margin: 2rem 0 1rem; display: flex; flex-wrap: wrap; gap: 1.5rem;">
+      <div style="flex: 1; min-width: 200px;">
+        <h3 style="color: #a4ffe0; border-left: 3px solid #3affb6; padding-left: 0.8rem; margin-bottom: 0.8rem; font-size: 1.3rem;">⛭ not illegal</h3>
+        <p style="font-size: 0.95rem;">Real hacking has no need for vandalism. It's the quiet epiphany of a mathematician, the glitch in a painter's eye, the sysadmin who makes a network sing. It's <strong style="color:#a4f0d0;">understanding so deep it looks like magic</strong>.</p>
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <h3 style="color: #a4ffe0; border-left: 3px solid #3affb6; padding-left: 0.8rem; margin-bottom: 0.8rem; font-size: 1.3rem;">⛭ not ethical</h3>
+        <p style="font-size: 0.95rem;">Ethics are human constructs — hacking pre-exists morality. It is a raw cognitive mode. But the true hacker chooses to <strong>illuminate, not exploit</strong>. God mod comes with responsibility: to see clearly and to build.</p>
+      </div>
+    </div>
 
-    <!-- Testimonials Section -->
-    <section class="section testimonials-section" id="testimonials">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <div class="subtitle">Client Stories</div>
-                <h2>What They Say</h2>
-            </div>
-            <div class="swiper testimonialSwiper" data-aos="fade-up">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Chiedza">
-                            </div>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="testimonial-text">"Hair Haven completely transformed my look! Mai Tanatswa listened to exactly what I wanted and delivered perfection. The atmosphere is so warm and welcoming—I always leave feeling beautiful."</p>
-                            <h4 class="testimonial-name">Chiedza T.</h4>
-                            <p class="testimonial-role">Regular Client</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tafadzwa">
-                            </div>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="testimonial-text">"I took the training course and now I'm running my own successful mobile salon. The hands-on approach and business tips were invaluable. Forever grateful to the Hair Haven team!"</p>
-                            <h4 class="testimonial-name">Tafadzwa M.</h4>
-                            <p class="testimonial-role">Graduate</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Rutendo">
-                            </div>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="testimonial-text">"Best braiding in Kwekwe! My box braids lasted over two months and still looked fresh. The attention to detail is incredible. I won't trust anyone else with my hair."</p>
-                            <h4 class="testimonial-name">Rutendo S.</h4>
-                            <p class="testimonial-role">Loyal Client</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section>
+    <!-- signature line + driptech -->
+    <div class="signature">
+      <span class="footnote">[ infinite curiosity ]</span>
+      <span class="sig-name">driptech</span>
+    </div>
 
-    <!-- Contact Section with Netlify Form -->
-    <section class="section contact-section" id="contact">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <div class="subtitle">Get in Touch</div>
-                <h2>Book Your Experience</h2>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Visit Our Salon</h3>
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="info-text">
-                            <h4>Location</h4>
-                            <p>Shop 5, Mbizo 19 Shopping Centre<br>Kwekwe, Zimbabwe</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="info-text">
-                            <h4>Call Us</h4>
-                            <p>+263 77 123 4567<br>+263 71 234 5678</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="info-text">
-                            <h4>Email</h4>
-                            <p>hairhavean@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-clock"></i></div>
-                        <div class="info-text">
-                            <h4>Hours</h4>
-                            <p>Mon-Fri: 8am–7pm<br>Sat: 9am–5pm<br>Sun: 10am–3pm</p>
-                        </div>
-                    </div>
-                    <div class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15136.471252542648!2d29.789965!3d-18.926924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDU1JzM2LjkiUyAyOcKwNDcnMjQuMCJF!5e0!3m2!1sen!2szw!4v1687890123456!5m2!1sen!2szw" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <h3>Send a Message</h3>
-                    
-                    <!-- Netlify Form - Submissions go to hairhavean@gmail.com -->
-                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
-                        <input type="hidden" name="form-name" value="contact" />
-                        <p class="hidden-field">
-                            <label>Don't fill this out: <input name="bot-field" /></label>
-                        </p>
+    <!-- hidden easter-egg: ascii embers of the terminal -->
+    <div class="hidden-ascii">
+      <pre style="font-size: 0.5rem;">·······  ······  ··  ··  ·····  ··  ··  ······  ······  ··      ··  ······  ······</pre>
+    </div>
+    <div style="display: flex; justify-content: flex-start; gap: 2px; margin-top: 1rem;">
+      <span style="color:#00c8a0;">⏆</span><span class="cursor"></span><span style="color:#0f6e62;">_ready</span>
+    </div>
+  </div>
 
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
-                        </div>
-                        <div class="form-group">
-                            <select name="service" class="form-control" required>
-                                <option value="" disabled selected>Select a service</option>
-                                <option value="Haircut & Styling">Haircut & Styling</option>
-                                <option value="Hair Coloring">Hair Coloring</option>
-                                <option value="Braiding">Braiding</option>
-                                <option value="Training Program">Training Program</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-control" placeholder="Your Message..." rows="5" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-gold">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Hair Haven</h3>
-                    <p>Where artistry meets elegance. Premium hairdressing and professional training in the heart of Kwekwe.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Explore</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#training">Training</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#services">Hair Styling</a></li>
-                        <li><a href="#services">Hair Coloring</a></li>
-                        <li><a href="#services">Braiding</a></li>
-                        <li><a href="#services">Treatments</a></li>
-                        <li><a href="#training">Training</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe for beauty tips and exclusive offers.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email">
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Hair Haven. All rights reserved. | Designed with passion in Zimbabwe</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        // Preloader
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('preloader').classList.add('fade-out');
-            }, 500);
-        });
-
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 50
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            const backToTop = document.getElementById('backToTop');
-            
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            if (window.scrollY > 500) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const overlay = document.getElementById('overlay');
-
-        function closeMenu() {
-            navLinks.classList.remove('active');
-            overlay.classList.remove('active');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            overlay.classList.toggle('active');
-            menuToggle.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        overlay.addEventListener('click', closeMenu);
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Hero Swiper
-        const heroSwiper = new Swiper('.heroSwiper', {
-            speed: 1000,
-            parallax: true,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-        // Testimonials Swiper
-        const testimonialSwiper = new Swiper('.testimonialSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            },
-        });
-
-        // Back to top
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Gallery lightbox
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const imgSrc = item.querySelector('img').src;
-                window.open(imgSrc, '_blank');
-            });
-        });
-    </script>
+  <!-- small extra: status line (optional) -->
+  <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #34665c; letter-spacing: 1px; text-align: center;">
+    ⚡ driptech::god_mod --trueform 2025 ⚡
+  </div>
 </body>
 </html>
